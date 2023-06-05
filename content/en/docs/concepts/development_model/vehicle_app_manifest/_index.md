@@ -56,9 +56,9 @@ The AppManifest is the only source of truth in our _Vehicle App_ templates for:
 The [_Vehicle Model_](/docs/concepts/development_model/#vehicle-models) of the _Vehicle App_ is described with the source and required (or optional) datapoints.
 More information: [Vehicle Model Creation](/docs/tutorials/vehicle_model_creation/)
 </br>
-The source identifies the used _Vehicle Model_ description and the datapoints section defines which signals need to be available for the _Vehicle App_ to run with the path, required flag and access rights.
+The source can be a local file path or a URL and identifies the used _Vehicle Model_ description and the datapoints section defines which signals need to be available for the _Vehicle App_ to run with the path, required flag and access rights.
 </br>
-More to read: [How to Reference a Model Specification](/docs/tutorials/vehicle_model_creation/automated_model_lifecycle/#how-to-reference-a-model-specification)
+Further information can be found here: [How to Reference a Model Specification](/docs/tutorials/vehicle_model_creation/automated_model_lifecycle/#how-to-reference-a-model-specification)
 </br>
 
 ### Datapoint Access Rights
@@ -70,8 +70,8 @@ More to read: [How to Reference a Model Specification](/docs/tutorials/vehicle_m
 | write        | app needs to access and set the value of the datapoint (e.g. set, set_many values via the databroker or services). WRITE access implicitly has READ access. | SetDatapoints                |
 {{</table>}}
 
-
 ## AppManifest Examples
+
 {{< tabpane lang="json">}}
 {{< tab "Runtime interface via databroker" >}}
 
