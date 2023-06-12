@@ -51,16 +51,16 @@ Create your own repository copy from the template repository of your choice [Pyt
 
 In the following chapter you will learn different possibilities to start developing based on your repository. Basically you can work on your own machine using just VSCode's [DevContainer](https://code.visualstudio.com/docs/remote/create-dev-container#:~:text=%20Create%20a%20development%20container%20%201%20Path,additional%20software%20in%20your%20dev%20container.%20More%20) or you can set up the environment on a remote agent, using [GitHub Codespaces](https://github.com/features/codespaces).
 
-**Prerequisites**: Your _Vehicle App_ reposiroty based on template is [created](#how-to-create-vehicle-app-repository).
+**Prerequisites**: Your _Vehicle App_ reposiroty based on template is [created](#how-to-create-vehicle-app-repository)
 
 {{< tabpane text=true >}}
-   {{% tab header="VSCode" %}}
+   {{< tab header="VSCode" text=true >}}
 
-   The VSCode's DevContainer makes possible to package a complete _Vehicle App_ development environment, including VSCode's extensions, [Vehicle App SDK](/docs/concepts/development_model/vehicle_app_sdk/), [Vehicle App Runtimes](/docs/tutorials/vehicle-app-runtime) and all other development & testing tools into a DevContainer that is then started within your VSCode session.
+   The VSCode's DevContainer makes possible to package a complete _Vehicle App_ development environment, including VSCode's extensions, [Vehicle App SDK](/docs/concepts/development_model/vehicle_app_sdk/), [Vehicle App Runtimes](/docs/tutorials/vehicle-app-runtime) and all other development and testing tools into a DevContainer that is then started within your VSCode session.
 
-   {{% alert title="Proxy configuration" color="warning" %}}
+   {{< alert title="Proxy configuration" text=true >}}
    A non proxy configuration is used by default. If you are working behind a corporate proxy you will need to specify proxy settings: [Working behind a proxy](/docs/tutorials/quickstart/behind_proxy)
-   {{% /alert %}}
+   {{< /alert >}}
 
    With following steps you will clone and set up your development environment on your own machine using just VSCode.
 
@@ -78,8 +78,8 @@ In the following chapter you will learn different possibilities to start develop
    The DevContainer is using the [docker-in-docker](https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/docker-in-docker.md) feature to run docker containers within the container. Currently, this feature has the limitation that only one instance of a DevContainer with the feature enabled can be running at the same time.
    {{% /alert %}}
 
-   {{% /tab %}}
-   {{% tab header="GitHub Codespaces" %}}
+   {{< /tab >}}
+   {{< tab header="GitHub Codespaces" >}}
    One of the possibilities to use your newly created repository to use it via [GitHub Codespaces](https://github.com/features/codespaces).
    You can either try it out directly in the browser or also use it inside VSCode. The main thing to remember is that everything is executed on a remote agent and the browser or VSCode just act as a "thin-client".
 
@@ -98,7 +98,7 @@ In the following chapter you will learn different possibilities to start develop
    Be careful with using GitHub Codespaces in browser and VSCode locally at the same time: _Tasks_ that are started using a browser session will not show in VSCode environment and vice versa that leads for problems.
    {{% /alert %}}
 
-   {{% /tab %}}
+   {{< /tab >}}
 {{< /tabpane >}}
 
 ## How to start runtimes?
@@ -129,7 +129,7 @@ Hint: Log files can be found in your workspace's logs directory
 ✅ Runtime is ready to use!
 ```
 
-{{% alert title="Info" %}}
+{{% alert title="Info" text=true %}}
 Simply press `ctrl + c` to stop the runtime.
 {{% /alert %}}
 
@@ -148,15 +148,18 @@ You should see the task `K3D Runtime - Up` being executed on a separate VSCode t
 $ velocitas exec runtime-k3d up 
 
 Hint: Log files can be found in your workspace's logs directory
-> mqtt-broker running
-> vehicledatabroker running
-> seatservice running
-> feedercan running
-✅ Runtime is ready to use!
+> Checking K3D registry... created.
+> Creating cluster with proxy configuration.
+> Checking K3D cluster... created.
+> Checking zipkin deployment... deployed.
+> Checking dapr... initialized.
+✅ Configuring controlplane for k3d...
+> Deploying runtime... installed.
+✅ Starting k3d runtime...
 ```
 
-{{% alert title="Warning" %}}
-You need to perform task `K3D Runtime - Down` to properly stop runtime activities.
+{{% alert title="Warning" text=true %}}
+   You need to perform task `K3D Runtime - Down` to properly stop runtime activities.
 {{% /alert %}}
 
 {{% /tab %}}
