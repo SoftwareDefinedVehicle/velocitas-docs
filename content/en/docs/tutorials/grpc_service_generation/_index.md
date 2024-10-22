@@ -6,12 +6,53 @@ description: >
   Learn how to generate and fill your own gRPC services.
 ---
 
-This tutorial shows how to generate a basic gRPC service like a seat service. For this example the proto file under <https://raw.githubusercontent.com/eclipse-kuksa/kuksa-incubation/0.4.0/seat_service/proto/sdv/edge/comfort/seats/v1/seats.proto> is taken.
+This tutorial shows how to generate a basic gRPC service like a seat service. For this example the proto file at <https://raw.githubusercontent.com/eclipse-kuksa/kuksa-incubation/0.4.0/seat_service/proto/sdv/edge/comfort/seats/v1/seats.proto> is used.
 
 All files included from `services/seats` are auto-generated and added to the app project as Conan dependency.
 For writing a complete gRPC service you need two velocitas apps/projects.
 One is implementing a client and the other one is for providing the server.
-To complete the server implementation you have to fill the generated `*ServiceImpl.cpp`.
-Have a look at the linked content beneath for a tutorial how it would be done for a SeatService leveraging <https://raw.githubusercontent.com/eclipse-kuksa/kuksa-incubation/0.4.0/seat_service/proto/sdv/edge/comfort/seats/v1/seats.proto>.
 
-To run the example you need to start the velocitas app for the server first and then the second velocitas app for the client.
+## Networking
+
+The examples shown in this tutorial are based on three components running:
+
+* A client using the API defined in the proto file
+* A server providing the API and communicating with Databroker to read or modify datapoints
+* A [Kuksa Databroker](https://github.com/eclipse-kuksa/kuksa-databroker).
+
+As a Velocitas developer you may use the [Velocitas devenv-runtimes](https://github.com/eclipse-velocitas/devenv-runtimes) to deploy and run the Databroker instance, but it is also possible to connect to a Databroker running on localhost.
+The setup used for the examples have been as followed:
+
+* One Velocitas Devcontainer running the Client, based on the [Vehicle App C++ Template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template).
+* One Velocitas Devcontainer running the Server, based on the [Vehicle App C++ Template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template).
+* Databroker running on localhost.
+
+For this to work the `.devcontainer/devcontainer.json` were changed. In the setup `--network=host` were added to allow the containers
+to use the host network, and for the server `forwardPorts": [ 5555 ]` were used to forward port 5555.
+
+```
+    "forwardPorts": [ 5555 ],
+	"runArgs": [
+		"--init",
+		"--privileged",
+		"--cap-add=SYS_PTRACE",
+		"--network=host",
+		"--security-opt",
+		"seccomp=unconfined"
+	],
+```
+
+Note that changes to `.devcontainer/devcontainer.json` may be overwritten when `velocitas sync`is performed.
+
+## Running the examples
+
+To run the examples the following actions needs to be performed in the following order:
+
+* Databroker needs to be started. 
+  If using a Databroker on host make sure that it is compatible with the Velocitas version you are using.
+  The catalog used must also be compatible with the signals used in the example
+* With a Databroker Client ([Kuksa Python Client](https://pypi.org/project/kuksa-client/) or [Databroker CLI](https://github.com/eclipse-kuksa/kuksa-databroker)) set the current value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` to a valid value, for example 12.
+* Start the server
+* Start the client
+* Verify that no (unexpected) errors are reported
+* Using the Databroker Client, verify that the target value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` has been set to 75.
