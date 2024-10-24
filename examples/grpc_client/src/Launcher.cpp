@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
         auto status_curr_pos = serviceClient->CurrentPosition(&context, request, &response);
         std::cout << "gRPC Server returned code: " << status_curr_pos.error_code() << std::endl;
         std::cout << "gRPC error message: " << status_curr_pos.error_message().c_str() << std::endl;
-        if (status.error_code() == ::grpc::StatusCode::OK)
+        if (status_curr_pos.ok())
             std::cout << "current Position:" << response.seat().position().base() << std::endl;
         return 0;
     }

@@ -27,8 +27,9 @@ The setup used for the examples have been as followed:
 * One Velocitas Devcontainer running the Server, based on the [Vehicle App C++ Template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template).
 * Databroker running on localhost.
 
-For this to work the `.devcontainer/devcontainer.json` were changed. In the setup `--network=host` were added to allow the containers
-to use the host network, and for the server `forwardPorts": [ 5555 ]` were used to forward port 5555.
+For this to work the `.devcontainer/devcontainer.json` was changed.
+In the setup `--network=host` was added to allow the containers to use the host network, 
+and for the server `forwardPorts": [ 5555 ]` was used to forward port 5555.
 
 ```
     "forwardPorts": [ 5555 ],
@@ -49,10 +50,10 @@ Note that changes to `.devcontainer/devcontainer.json` may be overwritten when `
 To run the examples the following actions needs to be performed in the following order:
 
 * Databroker needs to be started. 
-  If using a Databroker on host make sure that it is compatible with the Velocitas version you are using.
+  If using a Databroker on host make sure that it is compatible with the Velocitas version you are using
   The catalog used must also be compatible with the signals used in the example
-* With a Databroker Client ([Kuksa Python Client](https://pypi.org/project/kuksa-client/) or [Databroker CLI](https://github.com/eclipse-kuksa/kuksa-databroker)) set the current value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` to a valid value, for example 12.
+* Set the current value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` to a valid value, for example 12, using a Databroker Client ([Kuksa Python Client](https://pypi.org/project/kuksa-client/) or [Databroker CLI](https://github.com/eclipse-kuksa/kuksa-databroker))
 * Start the server
 * Start the client
 * Verify that no (unexpected) errors are reported
-* Using the Databroker Client, verify that the target value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` has been set to 75.
+* Use the Databroker Client to verify that the target value of `Vehicle.Cabin.Seat.Row1.DriverSide.Position` has been set to 75

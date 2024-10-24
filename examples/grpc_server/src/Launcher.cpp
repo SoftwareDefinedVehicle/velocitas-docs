@@ -14,8 +14,6 @@ int main(int argc, char** argv) {
     velocitas::VehicleModelContext::getInstance().setVdbc(
         velocitas::IVehicleDataBrokerClient::createInstance("vehicledatabroker"));
 
-    vehicle::Vehicle vehicle;
-
     auto seatServer = SeatsServiceServerFactory::create(Middleware::getInstance(), seatsImpl);
 
     seatServer->Wait();

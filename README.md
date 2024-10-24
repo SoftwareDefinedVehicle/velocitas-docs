@@ -13,7 +13,17 @@ This repository contains the source code for the Velocitas Documentation.
 
 ## Building documentation locally
 
-If using Debian you could install Hugo like this:
+### Using Devcontainer
+
+Velocitas-docs provides a  [Devcontainer](https://code.visualstudio.com/docs/devcontainers/containers) that can be used to build and run the documentation server locally.
+As the last step when starting the devcontainer the webserver is started, and it is reachable outside Devcontainer.
+If you update source pages the local server will be automatically updated.
+
+`Web Server is available at http://localhost:1313/velocitas/ (bind address 127.0.0.1)`
+
+### Using Native Envioronment
+
+It is also possible to build and run the documentation outside the Devcontainer. If using Debian you could install Hugo like this:
 
 `sudo apt install hugo`
 
@@ -30,6 +40,12 @@ If you update source pages the local server will be automatically updated.
 The Velocitas Documentation Site is not automatically updated when something is merged to main.
 Instead a Velocitas committer needs to manually run the `Publish Documentation` workflow.
 That results in that the `docs` branch is updated and triggers the `pages-build-deployment` workflow that publishes the new version to the Velocitas Documentation Site.
+
+## Theme Upgrade
+
+Velocitas-docs use the [Docsy Theme](https://github.com/google/docsy).
+To upgrade change version in [postCreateCommand.sh](.devcontainer/scripts/postCreateCommand.sh). Then rebuild the devcontainer.
+This will result in that `go.mod`and `go.sum` gets updated.
 
 ## Community
 

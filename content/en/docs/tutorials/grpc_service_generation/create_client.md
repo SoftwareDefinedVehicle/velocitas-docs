@@ -6,11 +6,9 @@ description: >
   Learn how to create a client for a service definition.
 ---
 
-
 # Introduction
 
-This example is based on that you have used the [Velocitas App C++ Template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template) to create a new repository,
-and now you want to modify it to act as a client.
+This example assumes that you have used the [Velocitas App C++ Template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template) to create a new repository and now want to modify it to be a grpc service client.
 The example files can also be found in the [Github repository](https://github.com/eclipse-velocitas/velocitas-docs/examples/grpc_client).
 
 # Velocitas components
@@ -29,8 +27,8 @@ Below is the minimum set needed in `.velocitas.json` if deploying Databroker on 
 
 ## App configuration
 
-In the `AppManifest.json` file you need to specify which interfaces your App want to use or provide.
-In this case it declares that it want to use `Move` and `CurrentPosition` from the Seats service defined in `seats.proto`.
+In the `AppManifest.json` file you need to specify which interfaces your App wants to use or provide.
+In this case it declares that it wants to use `Move` and `CurrentPosition` from the Seats service defined in `seats.proto`.
 
 
 ```json
@@ -53,22 +51,22 @@ In this case it declares that it want to use `Move` and `CurrentPosition` from t
 }
 ```
 
-
 ## File Generation
 
 When rebuilding the devcontainer with the configuration no new files will appear in your repository,
 but the SDK has been updated in the background so you can use it in the file containing `main()`.
+You can also regenerate the SDK with the `(Re-)generate gRPC SDKs` task.
 
 ## Launcher.cpp
 
-You need to add a file that implement the client behavior, in this example called `Launcher.cpp`. 
-You need to add `Launcher.cpp` to `src/CMakeLists.txt`.
+You need to have a file that implements the client behavior,
+in this example we modify the file `Launcher.cpp` that already exist in the [template](https://github.com/eclipse-velocitas/vehicle-app-cpp-template).
 
 The logic of the example client is simple. It tries to set the target position for the seat and if it
 succeeds it tries to read current position.
 
 ``` cpp
-include <sdk/middleware/Middleware.h>
+#include <sdk/middleware/Middleware.h>
 #include <services/seats/SeatsServiceClientFactory.h>
 #include <services/seats/seats.grpc.pb.h>
 
@@ -124,7 +122,7 @@ int main(int argc, char** argv) {
         auto status_curr_pos = serviceClient->CurrentPosition(&context, request, &response);
         std::cout << "gRPC Server returned code: " << status_curr_pos.error_code() << std::endl;
         std::cout << "gRPC error message: " << status_curr_pos.error_message().c_str() << std::endl;
-        if (status.error_code() == ::grpc::StatusCode::OK)
+        if (status_curr_pos.ok())
             std::cout << "current Position:" << response.seat().position().base() << std::endl;
         return 0;
     }
@@ -134,8 +132,7 @@ int main(int argc, char** argv) {
 ## Building and Running
 
 To (re-)build the App after changing the code you can use the [build script](https://github.com/eclipse-velocitas/vehicle-app-cpp-template/blob/main/build.sh).
-As preparation for running you must also set two environment variables to indicate where the address/port of the
-server.
+As preparation for running you must also set an environment variables to define the address/port of the server.
 
 ```bash
 ./build.sh

@@ -36,8 +36,7 @@ namespace velocitas {
 
     try {
         auto status =
-            m_vehicleModel->Cabin.Seat.Row1.DriverSide.Position.set(seat.position().base())
-                ->await();
+            vehicle.Cabin.Seat.Row1.DriverSide.Position.set(seat.position().base())->await();
 
         if (status.ok()) {
 
@@ -81,7 +80,7 @@ SeatsService::MoveComponent(::grpc::ServerContext*                              
     auto seat          = response->mutable_seat();
     auto seat_position = seat->mutable_position();
     try {
-        auto seatPos = m_vehicleModel->Cabin.Seat.Row1.DriverSide.Position.get()->await().value();
+        auto seatPos = vehicle.Cabin.Seat.Row1.DriverSide.Position.get()->await().value();
 
         std::cout << "Success!!" << std::endl;
         seat_position->set_base(seatPos);

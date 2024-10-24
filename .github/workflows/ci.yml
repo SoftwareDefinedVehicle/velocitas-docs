@@ -34,6 +34,11 @@ jobs:
           hugo-version: "0.123.3"
           extended: true
 
+      - name: Verify that devcontainer works
+        run: |
+          cd .devcontainer
+          docker buildx build -f Dockerfile -t test:latest .
+
       - name: Build
         run: |
           export NODE_PATH=$NODE_PATH:`npm root -g`
