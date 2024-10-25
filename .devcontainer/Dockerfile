@@ -21,10 +21,12 @@ ARG VARIANT=hugo
 # VERSION can be either 'latest' or a specific version number
 ARG VERSION=latest
 
-# Download Hugo
+# Download Hugo Dependencies
 RUN apt-get update && apt-get install -y ca-certificates openssl git curl golang python-is-python3 && \
-    rm -rf /var/lib/apt/lists/* && \
-    case ${VERSION} in \
+    rm -rf /var/lib/apt/lists/*
+
+# Download Hugo
+RUN case ${VERSION} in \
     latest) \
     export VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4)}') ;;\
     esac && \
@@ -35,7 +37,7 @@ RUN apt-get update && apt-get install -y ca-certificates openssl git curl golang
     *) \
     export ARCH=64bit ;; \
     esac && \
-    echo Wanted Architecture is ${ARCH} && \
+    echo Hugo architecture identifier is ${ARCH} && \
     wget -O ${VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${VERSION}/${VARIANT}_${VERSION}_Linux-${ARCH}.tar.gz && \
     tar xf ${VERSION}.tar.gz && \
     mv hugo /usr/bin/hugo
