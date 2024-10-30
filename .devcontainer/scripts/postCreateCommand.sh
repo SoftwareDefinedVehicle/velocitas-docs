@@ -20,9 +20,11 @@ export NODE_PATH=$NODE_PATH:`npm root -g`
 npm install -g npm
 npm install -g postcss postcss-cli autoprefixer
 npm install
-hugo mod get -u github.com/google/docsy@v0.6.0
+hugo mod get -u github.com/google/docsy@v0.11.0
 
 # install pre-commit
+sudo apt update
+sudo apt install -y python3-pip
 pip install pre-commit==3.6.0 --break-system-packages
 
 # add repo to git safe.directory & fix hugo issue with server start

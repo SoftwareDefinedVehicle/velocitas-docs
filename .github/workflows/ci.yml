@@ -19,6 +19,7 @@ on:
   push:
     branches:
       - "main"
+  pull_request:
 
 jobs:
   Build-documentation:
@@ -33,6 +34,12 @@ jobs:
         with:
           hugo-version: "0.123.3"
           extended: true
+
+      - name: Build devcontainer and do a sanity check that it starts
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            ls
 
       - name: Build
         run: |
@@ -53,9 +60,10 @@ jobs:
           echo -e "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Publish to GH Pages
-        # Note that gh_pages isnt published to https://eclipse-velocitas.github.io/velocitas-docs/
+        # Note that gh_pages isn't published to https://eclipse-velocitas.github.io/velocitas-docs/
         # or the alias https://eclipse.dev/velocitas/
         # So this basically just check if there are errors :-)
+        if: ${{ github.event_name == 'push'}}
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

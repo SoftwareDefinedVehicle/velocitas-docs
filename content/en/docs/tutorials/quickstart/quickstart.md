@@ -123,14 +123,15 @@ You can find more information about the _Vehicle App_ development in the [respec
 
 ## How to start the runtime services?
 
-The runtime services (like _KUKSA Databroker_ or _Vehicle Services_) are required to develop _Vehicle Apps_ and run integration tests.
+Velocitas has packaged a number of services as runtime services.
+The  services (like _KUKSA Databroker_ or _Vehicle Services_) can be used when developing _Vehicle Apps_ and to run integration test.
 
 Currently, the supported options to run these services is either [locally](/docs/tutorials/vehicle_app_runtime/local_runtime) or via the [Kanto runtime](/docs/tutorials/vehicle_app_runtime/kanto_runtime).
 
 {{< tabpane text=true >}}
    {{% tab header="Local Runtime" %}}
 
-A VS Code task called `Local Runtime - Up` is available to start all necessary services in the correct order.
+A VS Code task called `Local Runtime - Up` is available to start the included services in the correct order.
 
 1. Press <kbd>F1</kbd>
 2. Select command `Tasks: Run Task`
