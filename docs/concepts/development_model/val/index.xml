@@ -1,19 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Velocitas – Vehicle Abstraction Layer (VAL)</title>
+    <title>Vehicle Abstraction Layer (VAL) on Velocitas</title>
     <link>/velocitas/docs/concepts/development_model/val/</link>
     <description>Recent content in Vehicle Abstraction Layer (VAL) on Velocitas</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 09 May 2022 14:24:56 +0530</lastBuildDate>
-    
-	  <atom:link href="/velocitas/docs/concepts/development_model/val/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-      
-        
-      
-    
-    
+    <lastBuildDate>Wed, 30 Oct 2024 10:15:46 +0100</lastBuildDate>
+    <atom:link href="/velocitas/docs/concepts/development_model/val/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GRPC Interface Style Guide</title>
+      <link>/velocitas/docs/concepts/development_model/val/grpc_style_guide/</link>
+      <pubDate>Mon, 09 May 2022 14:24:56 +0530</pubDate>
+      <guid>/velocitas/docs/concepts/development_model/val/grpc_style_guide/</guid>
+      <description>This provides a style guide for .proto files. By following these conventions, you&amp;rsquo;ll make your protocol buffer message definitions and their corresponding classes consistent and easy to read. Unless otherwise indicated, this style guide is based on the style guide from google protocol-buffers style under Apache 2.0 License &amp;amp; Creative Commons Attribution 4.0 License.&#xA;Note that protocol buffer style can evolve over time, so it is likely that you will see .</description>
+    </item>
   </channel>
 </rss>
